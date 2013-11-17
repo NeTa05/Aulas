@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database','session','form_validation');
 */
 //$autoload['helper'] = array();// x defecto viene asi
 
-$autoload['helper'] = array('url','security','form');// se agrego url
+$autoload['helper'] = array('url','security','form','html','my_tag');// se agrego url
 
 
 

@@ -10,52 +10,39 @@
 
    
   </head>
-  <body style="background:;">
+  <body style="">
 
 
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle-"collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#"> Titulo</a>
-
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              
-              <!--
-              <li> <a href="#">Inicio </a></li>
-              <li> <a href="#">Acerca De </a></li>
-              <li> <a href="#">LogIn </a></li>
-              <li> <a href="#">Logout</a></li>
-              <li> <a href="#"> Cambio Clave</a></li> -->
-                            
-            </ul>
-          </div>
-        </div>
+      <div class="tabbable tabs-below" style="background:currentcolor">
+  
+        <ul class="nav nav-tabs">
+           <?= my_first_menu(); ?>       
+        </ul>
       </div>
-    </div>
+      
+           
+              
+         
 
    
 
     <div class="container-fluid">
       <div class="row-fluid">
         <!-- Menu de sistema-->
-  	    <div class="span3">
+  	    <div class="span3" style="">
     	      <div class="well sidebar-nav">
-              <ul class="nav nav-list">
-                <li class="nav-header" style="margin-top: 35px;s"> Menu Usuario</li>
+              <ul class="nav nav-list" style="margin-top:10%">
+                <li class="nav-header" style=""> Menu</li>
                 
               </ul>
             </div>
   	    </div>
   	    <div class="span9">
-  	    	<!--Body content (vistas de la aplicacion)-->
-      	 
+    	     <!--Body content (vistas de la aplicacion)-->
+           <br>
+           
+           <strong><legend><?= $title ?></legend></strong>
+	         <?= $this->load->view($content) ?>
   	      
   	    </div>
 	   </div>
@@ -73,7 +60,7 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- <script src="//code.jquery.com/jquery.js"></script> consumir jquery de internet-->-
+    <!-- <script src="//code.jquery.com/jquery.js"></script> consumir jquery de internet-->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?= base_url('js/jquery.js') ?>" ></script>
     <script src="<?= base_url('js/bootstrap.min.js') ?>" ></script>
