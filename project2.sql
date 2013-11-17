@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2013 a las 13:45:53
+-- Tiempo de generación: 16-11-2013 a las 20:45:15
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -105,14 +105,14 @@ CREATE TABLE IF NOT EXISTS `professors` (
 --
 
 CREATE TABLE IF NOT EXISTS `students` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `group_id` int(11) NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  PRIMARY KEY (`Id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `students` (
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `identification_card` varchar(100) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
@@ -131,15 +131,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `status` tinyint(1) NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  PRIMARY KEY (`ID`)
+  `kind` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`ID`, `identification_card`, `first_name`, `last_name`, `email`, `password`, `status`, `created`, `updated`) VALUES
-(1, '1', 's', 'q', 'dee', '1', 0, '2013-11-12 00:00:00', '2013-11-12 00:00:00');
+INSERT INTO `users` (`id`, `identification_card`, `first_name`, `last_name`, `email`, `password`, `status`, `created`, `updated`, `kind`) VALUES
+(1, '1', 's', 'q', '1', '1', 1, '2013-11-12 00:00:00', '2013-11-12 00:00:00', NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
