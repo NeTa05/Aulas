@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Codeigniter</title>
+    <title>Aulas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
     <!-- Bootstrap -->
     <link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet" media="screen">
@@ -33,14 +33,14 @@
     	      <div class="well sidebar-nav">
               <ul class="nav nav-list" style="margin-top:10%">
                 <li class="nav-header" style=""> Menu</li>
-                
+                <?= my_menu_app(); ?>
               </ul>
             </div>
   	    </div>
   	    <div class="span9">
     	     <!--Body content (vistas de la aplicacion)-->
            <br>
-           
+
            <strong><legend><?= $title ?></legend></strong>
 	         <?= $this->load->view($content) ?>
   	      

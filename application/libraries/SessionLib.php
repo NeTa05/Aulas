@@ -29,6 +29,8 @@ class SessionLib{
 			$this->CI->session->set_userdata('Password',$row->password);
 			//$this->CI->session->set_userdata('perfil_name',$row->password);
 			*/
+
+			$this->CI->session->set_userdata('kind',$row->kind);
 			$this->CI->session->set_userdata('id',$row->id);
 			return TRUE;
 		}

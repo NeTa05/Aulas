@@ -22,23 +22,32 @@ if(!function_exists('my_validation_errors')){
 if(!function_exists('my_first_menu')){
 
 	function my_first_menu(){
-		$opciones='<li>'.anchor('welcome/registration','Registrarse').'</li>';
-		$opciones=$opciones.'<li>'.anchor('welcome/login','Iniciar sesión').'</li>';
-
-		if(get_instance()->session->userdata('Usuario'))
+		
+		$opciones=null;
+		if(get_instance()->session->userdata('id'))
 		{
-			$opciones=$opciones.'<li>'.anchor('index.php/home/cambio_clave','Cambiar clave').'</li>';
-			$opciones=$opciones.'<li>'.anchor('index.php/home/salir','Salir').'</li>';
+			$admin=get_instance()->session->userdata('kind');
+			$opciones=$opciones.'<li>'.anchor('welcome/main','Inicio').'</li>';
+			if($admin==="Administrativo")
+			{
+				$opciones=$opciones.'<li>'.anchor('welcome/activate','Habilitar usuarios').'</li>';
+			}
+			$opciones=$opciones.'<li>'.anchor('welcome/logout','Cerrar sesión').'</li>';
+			
+			
 		}	
-		/*else
+		else
 		{
-			$opciones=$opciones.'<li>'.anchor('index.php/home/ingreso','Ingreso').'</li>';
+			$opciones='<li>'.anchor('welcome/registration','Registrarse').'</li>';
+			$opciones=$opciones.'<li>'.anchor('welcome/login','Iniciar sesión').'</li>';
 		}
-*/
+
 		return $opciones;
 		
 	}
 }
+
+
 
 if(!function_exists('my_menu_app')){
 
@@ -47,27 +56,10 @@ if(!function_exists('my_menu_app')){
 		$opciones=null;
 
 		//if is login
-		if(get_instance()->session->userdata('Usuario'))
+		if(get_instance()->session->userdata('id'))
 		{
-			$opciones='';
-			get_instance()->load->model('Model_Menu');
-			$query=get_instance()->Model_Menu->allForMenu();//getting the menu of database
-
-			foreach ($query as $opcion) {
-				//if is the url in the select
-				if ($opcion->url !='') {
-					$irA=$opcion->url;
-					$param= array('target'=>'_blank');
-				}
-				else
-				{
-					$irA=$opcion->controlador.'/'.$opcion->accion;
-					$param= array();
-
-				}
-
-				$opciones=$opciones.'<li>'.anchor($irA,$opcion->name).'</li>';//adding li in variable
-			}
+			
+			$opciones=$opciones.'<li>'.anchor('students/index','Estudiantes').'</li>';
 		}
 		return $opciones;
 	}
