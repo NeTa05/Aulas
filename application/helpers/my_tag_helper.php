@@ -27,7 +27,7 @@ if(!function_exists('my_first_menu')){
 		if(get_instance()->session->userdata('id'))
 		{
 			$admin=get_instance()->session->userdata('kind');
-			$opciones=$opciones.'<li>'.anchor('welcome/main','Inicio').'</li>';
+			$opciones=$opciones.'<li>'.anchor('welcome/main',$admin).'</li>';
 			if($admin==="Administrativo")
 			{
 				$opciones=$opciones.'<li>'.anchor('welcome/activate','Habilitar usuarios').'</li>';
