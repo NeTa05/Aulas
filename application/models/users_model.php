@@ -42,6 +42,17 @@ class Users_Model extends CI_Model {
         $this->db->where('password',$password);
         return $this->db->get('usuario');*/
     }
+
+    //method for going application
+    function usersForLogin()
+    {
+        $query = $this->db->query('SELECT * FROM users WHERE status=0 ');
+        if($query->num_rows()>0)//getting number of rows
+        {
+            return $query->result();    
+        }
+        
+    }
     
 
 }

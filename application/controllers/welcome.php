@@ -135,6 +135,16 @@ class Welcome extends CI_Controller {
 		$this->load->view('template',$data);
 	}
 
+	public function activate()
+	{
+		$data['content']='welcome/activate';
+		$data['title']='Habilitar usuarios inactivos';
+		$data['query']=$this->m->usersForLogin();
+		$this->load->view('template',$data);
+	}
+
+
+	
 	
 
 }
