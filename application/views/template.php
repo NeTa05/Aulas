@@ -44,6 +44,7 @@
            <strong><legend><?= $title ?></legend></strong>
 	         <?= $this->load->view($content) ?>
   	      
+
   	    </div>
 	   </div>
      <br>
@@ -51,6 +52,8 @@
      <footer> 
           <!-- creating the icon copiright and date-->
       <p>  &copy; Misitio - <?= date('d-m-Y H:i')?> </p>
+            <p> <?= "ID logueado(cambiar contraseña): ".$this->session->userdata('id'); ?></p>
+
         <!--inserting the variable of session('Usuario'), it is setting in home/about -->
       
      </footer>  

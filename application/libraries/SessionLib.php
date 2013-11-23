@@ -17,27 +17,24 @@ class SessionLib{
 		if($query->num_rows()>0)
 		{
 			$row = $query->row();
-			/*
-			//creating sessions like an array
-			$arregloSession= array(	'first_name'=>$row->first_name,	
-									'last_name'=>$row);	
-			$this->CI->session->set_userdata($arregloSession);
-			
-			$this->CI->session->set_userdata('id',$row->id);
-			$this->CI->session->set_userdata('Name',$row->name);
-			$this->CI->session->set_userdata('Usuario',$row->login);
-			$this->CI->session->set_userdata('Password',$row->password);
-			//$this->CI->session->set_userdata('perfil_name',$row->password);
-			*/
-
-			$this->CI->session->set_userdata('kind',$row->kind);
-			$this->CI->session->set_userdata('id',$row->id);
 			return TRUE;
 		}
 		else
 		{
-			$this->CI->session->sess_destroy();
 			return FALSE;
+		}	
+	}
+
+	public function emailOk($email)
+	{
+		$query=$this->CI->u->get_email($email);
+		if($query->num_rows()>0)
+		{
+			return FALSE;// email is already in the db
+		}
+		else
+		{
+			return TRUE;
 		}	
 	}
 
@@ -46,11 +43,18 @@ class SessionLib{
 		$query=$this->CI->u->get_status($email,$password);
 		if($query->num_rows()>0)
 		{
-			return TRUE;
+			$row = $query->row();
+			//echo $row->name;
+			
+			//creating sessions like an array
+			$arregloSession= array(	'id'=>$row->id,	
+									'kind'=>$row->kind);	
+			$this->CI->session->set_userdata($arregloSession);
+			return TRUE;//enable
 		}
 		else
 		{
-			return FALSE;
+			return FALSE;//disable
 		}
 		
 		

@@ -2,9 +2,7 @@
 
 								<!--controler -->
 <?= form_open('index.php/perfil/search', array('class'=>'form-search')); ?>	
-	<?= form_input(array('type'=>'text','name'=>'buscar','id'=>'buscar','placeholder'=>'Buscar por nombre..','class'=>'input-medium search-query'  ));?>
-	<?= form_button(array('type'=>'submit','content'=>'<i class="icon-search"></i>','class'=>'btn','title'=>'Buscar')); ?>
-	<?= anchor('index.php/perfil/create','Agregar',array('class'=>'btn btn-primary'))?>
+	
 
 <?= form_close();?>
 
@@ -24,19 +22,19 @@
 		</thead>
 	<tbody>
 		
-		<?php foreach ($query as $registro): ?>
+		<?php if(!empty($query)){foreach ($query as $register): ?>
 		<tr class="success">
-			<td><?= anchor('welcome/updateUser/'.$registro->id,$registro->id);  		?></td>
-			<td> <?= $registro->identification_card  ?>    </td>
-			<td> <?= $registro->first_name  ?>    </td>
-			<td> <?= $registro->last_name  ?>    </td>
-			<td> <?= $registro->email  ?>    </td>
-			<td> <?= $registro->kind  ?>    </td>
-			<td> <?php if($registro->status==0){echo"Desahabilitado";} else{echo"Habilitado";} ?>    </td>
-			<td><?= date('d/m/Y - H:i',strtotime($registro->created));?> </td>
-			<td><?= date('d/m/Y - H:i',strtotime($registro->updated));?> </td>
+			<td><?= anchor('welcome/edit/'.$register->id,$register->id);  		?></td>
+			<td> <?= $register->identification_card  ?>    </td>
+			<td> <?= $register->first_name  ?>    </td>
+			<td> <?= $register->last_name  ?>    </td>
+			<td> <?= $register->email  ?>    </td>
+			<td> <?= $register->kind  ?>    </td>
+			<td> <?php if($register->status==0){echo"Desahabilitado";} else{echo"Habilitado";} ?>    </td>
+			<td><?= date('d/m/Y - H:i',strtotime($register->created));?> </td>
+			<td><?= date('d/m/Y - H:i',strtotime($register->updated));?> </td>
 		</tr>
-		<?php endforeach; ?>
+		<?php endforeach; }?>
 	</tbody>
 
 	</table>

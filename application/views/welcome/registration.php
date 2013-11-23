@@ -51,7 +51,7 @@
     
 
      <div id="go" class="form-actions">
-     		<?= form_button(array('type'=>'submit','content'=>'Aceptar','class'=>'btn btn-primary','onClick'=>"return alert('Debe esperar que el Administrativo habilite su cuenta')")); ?>
+     		<?= form_button(array('type'=>'submit','content'=>'Aceptar','class'=>'btn btn-primary')); ?>
      		<?= anchor('welcome/index','Cancelar',array('class'=>'btn'))?>
      </div>
 

@@ -13,6 +13,7 @@ class Welcome extends CI_Controller {
 
 		$this->form_validation->set_message('required','Digite %s');
 		$this->form_validation->set_message('loginOk','Datos incorrectos');
+		$this->form_validation->set_message('emailOk','Ya hay cuenta con este email');
 		$this->form_validation->set_message('statusOk','Esta cuenta no ha sido activada');
 		$this->form_validation->set_message('matches','%s no coincide con %s');
 		$this->form_validation->set_message('min_length','%s debe tener como mínimo 6 caracteres');
@@ -38,6 +39,12 @@ class Welcome extends CI_Controller {
 		$this->load->view('template',$data);
 	}
 
+	public function emailOk()
+	{
+		$email=$this->input->post('email');
+		return $this->sessionlib->emailOk($email);
+	}
+
 	public function insert()
 	{
 		$registro = $this->input->post();
@@ -48,7 +55,7 @@ class Welcome extends CI_Controller {
 		$this->form_validation->set_rules('identification_card', 'Número de cédula', 'required');
 		$this->form_validation->set_rules('first_name', 'Nombre', 'required');
 		$this->form_validation->set_rules('last_name', 'Apellidos', 'required');
-		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|callback_emailOk');
 		
 
 		if ($this->form_validation->run()==FALSE) {
@@ -91,7 +98,7 @@ class Welcome extends CI_Controller {
 	{
 		return FALSE;
 	}
-
+	
 
 	public function loginForm()
 	{
@@ -99,32 +106,38 @@ class Welcome extends CI_Controller {
 		$this->form_validation->set_rules('email', 'Email', 'required|callback_loginOk');
 		$this->form_validation->set_rules('password', 'Contraseña', 'required');
 
-		//if it is false is because any of the rules over is failing
+		//if password and email aren't ok or empty
 		if ($this->form_validation->run()==FALSE) {
-			$this->login();//going to ingreso() without lossing the values of the variables 
+			//echo "FALSE";
+			$this->login();//going to login() without lossing the values of the variables 
 		}
+		//if password and email aren ok
 		else
 		{
+			//getting the variables from the form
 			$email=$this->input->post('email');
 			$password=$this->input->post('password');
-			$status= $this->sessionlib->status($email,$password);
+			$status= $this->sessionlib->status($email,$password);//checking if the user is enable
 
-			//$this->load->view('test');
+			// if the user is disable(desahabilitado)
 			if(!$status)
 			{
+				//calling the method statusOk
 				$this->form_validation->set_rules('email', 'Email', 'callback_statusOk');
-				if ($this->form_validation->run()==FALSE) 
+				
+				//the las callback return false, although is going to enter in this if
+			 	if ($this->form_validation->run()==FALSE) 
 				{
-					$this->login();//going to ingreso() without lossing the values of the variables 
+					$this->login();//going to login() without lossing the values of the variables
 				}
+				
 			}
+			// if the user is enable(habilitado)
 			else
 			{
-				
-				redirect('welcome/main');
-				//$this->CI->session->set_userdata('kind',$row->kind);
-				 
+				/*HAVE TO GET THE KIND WITH SESSION */
 
+				redirect('welcome/main');//going menu
 			}
 		}
 	}
@@ -138,11 +151,38 @@ class Welcome extends CI_Controller {
 	public function activate()
 	{
 		$data['content']='welcome/activate';
-		$data['title']='Habilitar usuarios inactivos';
+		$data['title']='Habilitar usuarios desahabilitados';
 		$data['query']=$this->m->usersForLogin();
 		$this->load->view('template',$data);
 	}
 
+
+	public function edit($id)
+	{
+		/*$id=$this->uri->segment(3);//getting the 3 argument (id)
+		*is the same than the argument*/
+
+		$data['content']='welcome/edit';
+		$data['title']='Habilitar este usuario';
+		$data['register']=$this->m->find($id);//send the id for the form
+		//var_dump($data['registro']);
+		$this->load->view('template',$data);
+
+	}
+
+	public function update()
+	{
+		$register = $this->input->post();
+		$register['updated']=date('Y/m/d H:i');
+		$register['status']=1;
+
+		/*$this->load->view('test');
+		var_dump($register);*/
+		
+		$this->m->update($register);
+		redirect('welcome/activate');
+	
+	}
 
 	
 	
