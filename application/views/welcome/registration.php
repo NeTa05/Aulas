@@ -44,7 +44,7 @@
         <select name="kind">
             <option <?php echo set_select('kind', 'one', TRUE); ?> >Administrativo</option>
             <option <?php echo set_select('kind', 'two'); ?> >Profesor</option>
-            <option <?php echo set_select('kind', 'three'); ?> >Alumno</option>
+            <option <?php echo set_select('kind', 'three'); ?> >Estudiante</option>
         </select>
     </div>
 
