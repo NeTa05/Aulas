@@ -13,44 +13,25 @@ class Students_Model extends CI_Model {
         return $query->result();
     }
 
-    function allFiltered($field, $value) {
-        $this->db->select('usuario.* , perfil.name as perfil_name');
-        $this->db->from('usuario');
-        $this->db->join('perfil', 'usuario.perfil_id = perfil.id', 'left');
-        $this->db->like($field, $value);
-
-        $query = $this->db->get();
-        return $query->result();
-    }
-
     function find($id) {
     	$this->db->where('id', $id);
-		return $this->db->get('usuario')->row();
+		return $this->db->get('students')->row();
     }
 
     function insert($registro) {
     	$this->db->set($registro);
-		$this->db->insert('usuario');
+		$this->db->insert('students');
     }
 
     function update($registro) {
     	$this->db->set($registro);
 		$this->db->where('id', $registro['id']);
-		$this->db->update('usuario');
+		$this->db->update('students');
     }
 
     function delete($id) {
     	$this->db->where('id', $id);
-		$this->db->delete('usuario');
-    }
-
-    function get_login($user,$password)
-    {
-        
-        return $query = $this->db->query(' SELECT * FROM usuario WHERE login LIKE binary "'.$user.'" and password LIKE binary "'.$password.'" ');
-        /*$this->db->where('login',$user);
-        $this->db->where('password',$password);
-        return $this->db->get('usuario');*/
+		$this->db->delete('students');
     }
     
     function get_perfiles() {

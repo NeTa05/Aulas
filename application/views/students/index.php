@@ -1,13 +1,8 @@
 <div class="page-header" style="margin-top:5%">
 
 				<!--controler -->
-<?= form_open('index.php/perfil/search', array('class'=>'form-search')); ?>	
-	<?= form_input(array('type'=>'text','name'=>'buscar','id'=>'buscar','placeholder'=>'Buscar por nombre..','class'=>'input-medium search-query'  ));?>
-	<?= form_button(array('type'=>'submit','content'=>'<i class="icon-search"></i>','class'=>'btn','title'=>'Buscar')); ?>
-	<?= anchor('index.php/perfil/create','Agregar',array('class'=>'btn btn-primary'))?>
-
-	
-
+<?= form_open('', array('class'=>'form-search')); ?>	
+	<?= anchor('students/create','Agregar',array('class'=>'btn btn-primary'))?>
 <?= form_close();?>
 
 	<table class="table table-hover" >
