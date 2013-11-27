@@ -17,10 +17,7 @@ class Welcome extends CI_Controller {
 		$this->form_validation->set_message('statusOk','Esta cuenta no ha sido activada');
 		$this->form_validation->set_message('matches','%s no coincide con %s');
 		$this->form_validation->set_message('min_length','%s debe tener como mínimo 6 caracteres');
-
-		
-
-											
+								
 	}
 	public function index()
 	{

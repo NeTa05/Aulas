@@ -61,6 +61,9 @@ if(!function_exists('my_menu_app')){
 			
 			$opciones=$opciones.'<li>'.anchor('students/index','Estudiantes').'</li>';
 			$opciones=$opciones.'<li>'.anchor('professors/index','Profesores').'</li>';
+			$opciones=$opciones.'<li>'.anchor('classrooms/index','Aulas').'</li>';
+			$opciones=$opciones.'<li>'.anchor('courses/index','Cursos').'</li>';
+			$opciones=$opciones.'<li>'.anchor('groups/index','Grupos').'</li>';
 		}
 		return $opciones;
 	}
