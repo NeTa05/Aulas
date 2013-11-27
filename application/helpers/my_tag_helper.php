@@ -60,6 +60,7 @@ if(!function_exists('my_menu_app')){
 		{
 			
 			$opciones=$opciones.'<li>'.anchor('students/index','Estudiantes').'</li>';
+			$opciones=$opciones.'<li>'.anchor('professors/index','Profesores').'</li>';
 		}
 		return $opciones;
 	}

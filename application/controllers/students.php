@@ -7,7 +7,8 @@ class Students extends CI_Controller {
 	{
 		parent::__construct();
 		
-		$this->load->model('Students_Model','m');//loading a model_usuario, name of instance
+		$this->load->model('Students_Model','m');
+		$this->form_validation->set_message('required','Digite %s');//loading a model_usuario, name of instance
 		/*$this->load->library('sessionLib');//loading a model_usuario, name of instance
 		$this->form_validation->set_message('required','Digite %s');
 		$this->form_validation->set_message('loginOk','Datos incorrectos');*/
