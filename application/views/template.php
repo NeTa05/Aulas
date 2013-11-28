@@ -4,8 +4,11 @@
     <title>Aulas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
     <!-- Bootstrap -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet" media="screen">
     <link href="<?= base_url('css/bootstrap-responsive.css') ?>" rel="stylesheet" media="screen">
+
+
     <!-- base url nos direcciona a la carpeta principal-->
 
    

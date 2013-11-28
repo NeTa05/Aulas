@@ -64,6 +64,8 @@ if(!function_exists('my_menu_app')){
 			$opciones=$opciones.'<li>'.anchor('classrooms/index','Aulas').'</li>';
 			$opciones=$opciones.'<li>'.anchor('courses/index','Cursos').'</li>';
 			$opciones=$opciones.'<li>'.anchor('groups/index','Grupos').'</li>';
+			$opciones=$opciones.'<li>'.anchor('careers/index','Carreras').'</li>';
+
 		}
 		return $opciones;
 	}

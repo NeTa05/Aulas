@@ -1,21 +1,17 @@
 <div class="page-header" style="margin-top:5%">
 
 				<!--controler -->
-	<?= form_button(array('type'=>'submit','content'=>'<i class="glyphicon glyphicon-search"></i>','class'=>'btn','title'=>'Buscar')); ?>
-
-
 <?= form_open('', array('class'=>'form-search')); ?>	
-	<?= anchor('students/create','Agregar',array('class'=>'btn btn-primary'))?>
+	<?= anchor('courses/create','Agregar',array('class'=>'btn btn-primary'))?>
 <?= form_close();?>
 
 	<table class="table table-hover" >
 		<thead>
 			<tr class="success">
 				<th>ID</th>
-				<th>Cédula</th>
+				<th>Código</th>
 				<th>Nombre</th>
-				<th>Apellidos</th>
-				<th>Email</th>
+				<th>Nombre carrera</th>
 				<th>Creado</th>
 				<th>Actualizado</th>
 			</tr>
@@ -24,11 +20,10 @@
 		
 		<?php if(!empty($query)){foreach ($query as $register): ?>
 		<tr class="success">
-			<td><?= anchor('students/edit/'.$register->id,$register->id,array('title'=>'Click para modificar o eliminar'));  		?></td>
-			<td> <?= $register->identification_card  ?>    </td>
-			<td> <?= $register->first_name  ?>    </td>
-			<td> <?= $register->last_name  ?>    </td>
-			<td> <?= $register->email  ?>    </td>
+			<td><?= anchor('courses/edit/'.$register->id,$register->id,array('title'=>'Click para modificar o eliminar'));  		?></td>
+			<td> <?= $register->code  ?>    </td>
+			<td> <?= $register->name  ?>    </td>
+			<td> <?= $register->name_career  ?>    </td>
 			<td><?= date('d/m/Y - H:i',strtotime($register->created));?> </td>
 			<td><?= date('d/m/Y - H:i',strtotime($register->updated));?> </td>
 		</tr>
