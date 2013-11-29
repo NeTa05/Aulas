@@ -54,8 +54,7 @@
 
      <footer> 
           <!-- creating the icon copiright and date-->
-      <p>  &copy; Misitio - <?= date('d-m-Y H:i')?> </p>
-            <p> <?= "ID logueado(cambiar contraseña): ".$this->session->userdata('id'); ?></p>
+      <p>  &copy; Aulas &copy; <?= date('d-m-Y H:i')?> </p>
 
         <!--inserting the variable of session('Usuario'), it is setting in home/about -->
       
