@@ -40,17 +40,29 @@ class Professors extends CI_Controller {
 	{
 		$register = $this->input->post();
 
-		$this->form_validation->set_rules('first_name', 'Nombre', 'required');
-		$this->form_validation->set_rules('last_name', 'Apellidos', 'required');
-		$this->form_validation->set_rules('identification_card', 'Cédula', 'required');
-		$this->form_validation->set_rules('email', 'Email', 'required');
-
+		//if are same
+		if($this->input->post('identification_card')===$this->input->post('identification_card1'))
+		{
+			$this->form_validation->set_rules('first_name', 'Nombre', 'required');
+			$this->form_validation->set_rules('last_name', 'Apellidos', 'required');
+			$this->form_validation->set_rules('identification_card', 'Cédula', 'required');
+			$this->form_validation->set_rules('email', 'Email', 'required');
+		}
+		//if the new identification_card is changing(two varibles are different)
+		else
+		{
+			$this->form_validation->set_rules('first_name', 'Nombre', 'required');
+			$this->form_validation->set_rules('last_name', 'Apellidos', 'required');
+			$this->form_validation->set_rules('identification_card', 'Cédula', 'required|callback_professorsOk');
+			$this->form_validation->set_rules('email', 'Email', 'required');
+		}
 		//if it is false is because any of the rules over is failing
 		if ($this->form_validation->run()==FALSE) {
 			$this->edit($register['id']);//going to ingreso() without lossing the values of the variables 
 		}
 		else
-		{
+		{	
+			unset($register['identification_card1']);//delete the last identification_card
 			$register['updated']=date('Y/m/d H:i');
 			$this->m->update($register);
 			redirect('professors/index');

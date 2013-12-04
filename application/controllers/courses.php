@@ -50,12 +50,26 @@ class Courses extends CI_Controller {
 		$this->form_validation->set_rules('code', 'Código', 'required');
 		
 
+		//if are same
+		if($this->input->post('code')===$this->input->post('code1'))
+		{
+			$this->form_validation->set_rules('name', 'Nombre', 'required');
+			$this->form_validation->set_rules('code', 'Código', 'required');
+		}
+		//if the new identification_card is changing(two varibles are different)
+		else
+		{
+			$this->form_validation->set_rules('name', 'Nombre', 'required');
+			$this->form_validation->set_rules('code', 'Código', 'required|callback_coursesOk');
+		}
+
 		//if it is false is because any of the rules over is failing
 		if ($this->form_validation->run()==FALSE) {
 			$this->edit($register['id']);//going to ingreso() without lossing the values of the variables 
 		}
 		else
 		{
+			unset($register['code1']);//delete the last code
 			$register['updated']=date('Y/m/d H:i');
 			$this->m->update($register);
 			redirect('courses/index');

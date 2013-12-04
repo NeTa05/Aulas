@@ -15,6 +15,7 @@
             <!-- texto // for to link with the id login over here    -->
       <?= form_label('Cédula: ','identification_card',array('class'=>'control-label')); ?>
       <?= form_input(array('type'=>'text','name'=>'identification_card','id'=>'identification_card','value'=>$register->identification_card));?>
+      <?= form_hidden('identification_card1',$register->identification_card); ?>
     </div>
 
     <div class="control-group">

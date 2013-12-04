@@ -94,6 +94,19 @@ class ValidationsLib{
 		}	
 	}
 
+	public function careersDelete($id)
+	{
+		$query=$this->CI->Courses_Model->findCareers($id);
+		if($query->num_rows()>0)
+		{
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}	
+	}
+
 	
 
 

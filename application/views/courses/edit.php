@@ -15,6 +15,7 @@
             <!-- texto // for to link with the id login over here    -->
       <?= form_label('Código : ','code',array('class'=>'control-label')); ?>
       <?= form_input(array('type'=>'text','name'=>'code','id'=>'code','value'=>$register->code));?>
+      <?= form_hidden('code1',$register->code); ?>
     </div>
 
     <div class="control-group">

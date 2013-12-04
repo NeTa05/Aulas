@@ -51,12 +51,27 @@ class Groups extends CI_Controller {
 		
 		$this->form_validation->set_rules('name', 'Nombre del grupo', 'required');
 
+
+		//if are same
+		if($this->input->post('name')===$this->input->post('name1'))
+		{
+			$this->form_validation->set_rules('name', 'Nombre del grupo', 'required');
+		}
+		//if the new identification_card is changing(two varibles are different)
+		else
+		{
+			$this->form_validation->set_rules('name', 'Nombre del grupo', 'required|callback_groupsOk');
+		}
+
+
+
 		//if it is false is because any of the rules over is failing
 		if ($this->form_validation->run()==FALSE) {
 			$this->edit($register['id']);//going to ingreso() without lossing the values of the variables 
 		}
 		else
 		{
+			unset($register['name1']);//delete the last identification_card
 			$register['updated']=date('Y/m/d H:i');
 			$this->m->update($register);
 			redirect('groups/index');

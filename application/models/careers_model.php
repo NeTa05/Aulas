@@ -18,6 +18,7 @@ class Careers_Model extends CI_Model {
 		return $this->db->get('careers')->row();
     }
 
+
     function findCode($code) {
         $this->db->where('code', $code);
         return $this->db->get('careers');
