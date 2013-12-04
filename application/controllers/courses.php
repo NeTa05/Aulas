@@ -13,6 +13,10 @@ class Courses extends CI_Controller {
 		/*$this->load->library('sessionLib');//loading a model_usuario, name of instance
 		$this->form_validation->set_message('required','Digite %s');
 		$this->form_validation->set_message('loginOk','Datos incorrectos');*/
+
+		$this->load->library('validationsLib');//loading a model_usuario, name of instance
+		/*$this->form_validation->set_message('required','Digite %s');*/
+		$this->form_validation->set_message('coursesOk','Este código ya existe');
 	}
 
 	public function index()
@@ -71,13 +75,19 @@ class Courses extends CI_Controller {
 
 	}
 
+	public function coursesOk()
+	{
+		$code=$this->input->post('code');
+		return $this->validationslib->courses($code);
+	}
+
 	public function insert()
 	{
 		$register = $this->input->post();
 
 		
 		$this->form_validation->set_rules('name', 'Nombre', 'required');
-		$this->form_validation->set_rules('code', 'Código', 'required');
+		$this->form_validation->set_rules('code', 'Código', 'required|callback_coursesOk');
 		$this->form_validation->set_rules('id_career', 'Nombre de carrera', 'required');
 
 		//if it is false is because any of the rules over is failing

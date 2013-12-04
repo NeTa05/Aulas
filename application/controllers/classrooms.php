@@ -12,6 +12,10 @@ class Classrooms extends CI_Controller {
 		/*$this->load->library('sessionLib');//loading a model_usuario, name of instance
 		$this->form_validation->set_message('required','Digite %s');
 		$this->form_validation->set_message('loginOk','Datos incorrectos');*/
+
+		$this->load->library('validationsLib');//loading a model_usuario, name of instance
+		/*$this->form_validation->set_message('required','Digite %s');*/
+		$this->form_validation->set_message('classroomsOk','Este código ya existe');
 	}
 
 	public function index()
@@ -67,11 +71,17 @@ class Classrooms extends CI_Controller {
 
 	}
 
+	public function classroomsOk()
+	{
+		$code=$this->input->post('code');
+		return $this->validationslib->classrooms($code);
+	}
+
 	public function insert()
 	{
 		$register = $this->input->post();
 
-		$this->form_validation->set_rules('code', 'Código', 'required');
+		$this->form_validation->set_rules('code', 'Código', 'required|callback_classroomsOk');
 		$this->form_validation->set_rules('name', 'Nombre', 'required');
 		$this->form_validation->set_rules('location', 'Ubicación', 'required');
 

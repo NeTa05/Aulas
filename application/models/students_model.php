@@ -13,9 +13,15 @@ class Students_Model extends CI_Model {
         return $query->result();
     }
 
+    function findIdentification($identification) {
+    	$this->db->where('identification_card', $identification);
+		return $this->db->get('students');
+    }
+
+
     function find($id) {
-    	$this->db->where('id', $id);
-		return $this->db->get('students')->row();
+        $this->db->where('id', $id);
+        return $this->db->get('students')->row();
     }
 
     function insert($registro) {

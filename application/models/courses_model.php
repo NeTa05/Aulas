@@ -27,6 +27,11 @@ class Courses_Model extends CI_Model {
 		return $this->db->get('courses')->row();
     }
 
+    function findCode($code) {
+        $this->db->where('code', $code);
+        return $this->db->get('courses');
+    }
+
     function insert($registro) {
     	$this->db->set($registro);
 		$this->db->insert('courses');

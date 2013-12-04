@@ -1,7 +1,7 @@
 <div id="edit" style="margin-top:5%;">
 
 		<!--setting the action for the button "Ingresar" in the div with the id go -->
-	<?= form_open('courses/insert',array('class'=>'form-horizontal' )); ?>
+	<?= form_open('groups/insert',array('class'=>'form-horizontal' )); ?>
 	
 
     <?= my_validation_errors(validation_errors());?>

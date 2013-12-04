@@ -17,6 +17,11 @@ class Professors_Model extends CI_Model {
 		return $this->db->get('professors')->row();
     }
 
+    function findIdentification($identification) {
+        $this->db->where('identification_card', $identification);
+        return $this->db->get('professors');
+    }
+
     function insert($registro) {
     	$this->db->set($registro);
 		$this->db->insert('professors');

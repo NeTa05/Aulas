@@ -17,6 +17,11 @@ class Classrooms_Model extends CI_Model {
 		return $this->db->get('classrooms')->row();
     }
 
+    function findCode($code) {
+        $this->db->where('code', $code);
+        return $this->db->get('classrooms');
+    }
+
     function insert($registro) {
     	$this->db->set($registro);
 		$this->db->insert('classrooms');

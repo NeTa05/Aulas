@@ -9,9 +9,9 @@ class Students extends CI_Controller {
 		
 		$this->load->model('Students_Model','m');
 		$this->form_validation->set_message('required','Digite %s');//loading a model_usuario, name of instance
-		/*$this->load->library('sessionLib');//loading a model_usuario, name of instance
-		$this->form_validation->set_message('required','Digite %s');
-		$this->form_validation->set_message('loginOk','Datos incorrectos');*/
+		$this->load->library('validationsLib');//loading a model_usuario, name of instance
+		/*$this->form_validation->set_message('required','Digite %s');*/
+		$this->form_validation->set_message('studentsOk','Número de cédula ya existe');
 	}
 
 	public function index()
@@ -68,13 +68,20 @@ class Students extends CI_Controller {
 
 	}
 
+	public function studentsOk()
+	{
+		$identification=$this->input->post('identification_card');
+		return $this->validationslib->students($identification);
+	}
+
+
 	public function insert()
 	{
 		$register = $this->input->post();
 
 		$this->form_validation->set_rules('first_name', 'Nombre', 'required');
 		$this->form_validation->set_rules('last_name', 'Apellidos', 'required');
-		$this->form_validation->set_rules('identification_card', 'Cédula', 'required');
+		$this->form_validation->set_rules('identification_card', 'Cédula', 'required|callback_studentsOk');
 		$this->form_validation->set_rules('email', 'Email', 'required');
 
 		//if it is false is because any of the rules over is failing
@@ -83,10 +90,12 @@ class Students extends CI_Controller {
 		}
 		else
 		{
+			echo "Insertado";
+			/*
 			$register['updated']=date('Y/m/d H:i');
 			$register['created']=date('Y/m/d H:i');
 			$this->m->insert($register);
-			redirect('students/index');
+			redirect('students/index');*/
 		}
 		
 	}

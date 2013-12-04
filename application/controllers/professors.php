@@ -8,6 +8,8 @@ class Professors extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->model('Professors_Model','m');//loading a model_usuario, name of instance
+		$this->form_validation->set_message('professorsOk','Número de cédula ya existe');
+		$this->load->library('validationsLib');//loading a model_usuario, name of instance
 		/*$this->load->library('sessionLib');//loading a model_usuario, name of instance
 		$this->form_validation->set_message('required','Digite %s');
 		$this->form_validation->set_message('loginOk','Datos incorrectos');*/
@@ -67,13 +69,20 @@ class Professors extends CI_Controller {
 
 	}
 
+	public function professorsOk()
+	{
+		$identification=$this->input->post('identification_card');
+		return $this->validationslib->professors($identification);
+	}
+
+
 	public function insert()
 	{
 		$register = $this->input->post();
 
 		$this->form_validation->set_rules('first_name', 'Nombre', 'required');
 		$this->form_validation->set_rules('last_name', 'Apellidos', 'required');
-		$this->form_validation->set_rules('identification_card', 'Cédula', 'required');
+		$this->form_validation->set_rules('identification_card', 'Cédula', 'required|callback_professorsOk');
 		$this->form_validation->set_rules('email', 'Email', 'required');
 
 		//if it is false is because any of the rules over is failing

@@ -28,6 +28,11 @@ class Groups_Model extends CI_Model {
 		return $this->db->get('groups')->row();
     }
 
+    function findName($name) {
+        $this->db->where('name', $name);
+        return $this->db->get('groups');
+    }
+
     function insert($registro) {
     	$this->db->set($registro);
 		$this->db->insert('groups');
